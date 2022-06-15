@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import AuthorizeLogo from "../components/AuthorizeLogo";
-import PostsContainer from "../components/PostsContainer";
-
-export default function Home() {
+import { useState,useEffect } from "react";
+import FriendsContainer from "../components/FriendsContainer";
+export default function Friends() {
   const [isLogin, setLogin] = useState(false);
   useEffect(() => {
     const Api_Key = localStorage.getItem("Api_Key");
@@ -12,11 +11,11 @@ export default function Home() {
       setLogin(true);
     }
   }, []);
-  return (
-    <main>
-      {
-        isLogin == true ? <PostsContainer /> : <AuthorizeLogo />
-      }
-    </main>
-  )
-}
+
+    return (
+      <main className="my-5">
+        {isLogin ? <FriendsContainer /> : <AuthorizeLogo />}
+      </main>
+    )
+  }
+  

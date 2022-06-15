@@ -1,16 +1,133 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+:root{
+  --header-bg-color:rgb(25, 28, 26);
+  --logo-color:rgb(26, 255, 0);
+  --header-component-color:var(--logo-color);
+  --header-height:80px;
+  --logo-basis:25%;
+  --search-box-basis:40%;
+  --header-links-basis:30%;
+  --header-each-link-basis:20%;
+  --body-component-color:var(--logo-color);
+  --main-bg-color:black;
+  --input-bg-color:#ffffff;
+  --input-text-color:rgb(0, 255, 42);
+  --popup-bg-color:rgb(255, 0, 0);
+  --popup-text-color:rgb(255, 208, 0);
+  --post-left-basis:25%;
+  --post-right-basis:75%;
 }
 
-a {
-  color: inherit;
+
+body{
+  background: var(--main-bg-color);
+  min-height: 100vh;
+}
+
+.logo{
+  flex-basis: var(--logo-basis);
+}
+
+.search-box{
+  flex-basis: var(--search-box-basis);
+  height: var(--header-height);
+  position: relative;
+}
+
+.search-box input{
+  border: 2px solid var(--header-component-color);
+  padding: 10px 50px;
+  outline: none;
+  border-radius: 30px;
+  color: var(--header-component-color);
+  width: 100%;
+}
+
+.search-box i{
+  position: absolute;
+  left: 20px;
+  font-size: 1.5rem;
+  color: var(--header-component-color);
+}
+
+.search-box input::placeholder{
+  color: var(--header-component-color);
+}
+
+.links{
+  flex-basis: var(--header-links-basis);
+}
+
+.link-container{
+  flex-basis: var(--header-each-link-basis);
+}
+
+.link-container a{
+  color: var(--header-component-color);
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+.link-container a i{
+  font-size: 2.5rem;
+}
+
+.authorize-icon{
+  font-size: 30rem;
+  color: var(--body-component-color);
+}
+
+.authorize-basis{
+  flex-basis: 40%;
+}
+
+.post{
+  height: 50vh;
+}
+
+.post .left{
+  flex-basis: var(--post-left-basis);
+}
+
+.post .right{
+  flex-basis: var(--post-right-basis);
+}
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.image-container .image {
+  width: 100%;
+  height: 100%;
+  position: relative !important;
+  object-fit: cover;
+}
+
+.friends-avatar{
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+.friends-avatar img{
+  border-radius: 50%;
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+
+input[type="file"]{
+  display: none;
+}
+
+label[for="post-file"]{
+  background: var(--body-component-color);
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  display: block;
+  margin: 2rem 1.5rem;
+  color: var(--input-bg-color);
+  width: 100%;
+}
+
+@media screen and (max-width:800px) {
 }

@@ -15,9 +15,10 @@ html {
 header {
     height: var(--header-height);
     background: var(--header-bg-color);
-    position: sticky;
-    top: 0px;
+    width: 100%;
+    /* top: 0px; */
     z-index: 100;
+    box-shadow: 0px 0px 5px var(--header-component-color);
 }
 
 footer {
@@ -25,7 +26,7 @@ footer {
     background: var(--header-bg-color);
 }
 
-a{
+a {
     font-size: 1.5rem;
 }
 
@@ -176,29 +177,34 @@ a{
     font-size: 1rem;
 }
 
-.logo-font{
+.logo-font {
     color: var(--logo-color);
     text-align: center;
 }
 
-.input-field{
+.input-field {
     outline: none;
     border: none;
     width: 100%;
-    padding: 1rem ;
+    padding: 1rem;
     margin: 1.5rem;
     border-radius: 5px;
     font-size: 1.5rem;
     background: var(--input-bg-color);
     border: 3px solid var(--body-component-color);
-    color:var(--input-text-color);
+    color: var(--input-text-color);
+    transition: border var(--transition-time-low) ease;
 }
 
-.input-field::placeholder{
+.input-field::placeholder {
     color: var(--input-text-color);
 }
 
-.btn{
+.input-field:focus {
+    border: 3px solid var(--input-hover-color);
+}
+
+.btn {
     padding: 1rem 2rem;
     border-radius: 5px;
     /* border: 2px solid var(--header-bg-color); */
@@ -209,14 +215,22 @@ a{
     width: 100%;
     margin: 1.5rem;
     font-size: 1.8rem;
+    transition: background var(--transition-time-low) ease;
 }
-.header-color{
-    color:var(--header-bg-color);
+
+.btn:hover {
+    background: var(--header-hover-component-color);
 }
-.body-color{
+
+.header-color {
+    color: var(--header-bg-color);
+}
+
+.body-color {
     color: var(--body-component-color);
 }
-.popup-message{
+
+.popup-message {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -230,42 +244,48 @@ a{
     background: var(--popup-bg-color);
 }
 
-.popup-message .message-title{
+.popup-message .message-title {
     color: var(--popup-text-color);
     font-size: 3rem;
     padding: 10px;
 }
-.popup-message .message-desc{
+
+.popup-message .message-desc {
     color: var(--popup-text-color);
     font-size: 1.5rem;
 }
 
-.p-absolute{
+.p-absolute {
     position: absolute;
 }
-.p-relative{
+
+.p-relative {
     position: relative;
 }
 
-.p-justify-center{
+.p-justify-center {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.bottom{
+.bottom {
     bottom: 0px;
 }
-.top{
+
+.top {
     top: 0px;
 }
-.left{
+
+.left {
     left: 0px;
 }
-.right{
+
+.right {
     right: 0px;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
+

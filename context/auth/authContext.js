@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
-const authContext = ()=>{
-    return createContext()
+const authContext = (state)=>{
+    return createContext(state)
 }
 
 export default authContext;

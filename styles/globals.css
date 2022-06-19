@@ -1,94 +1,116 @@
-:root{
-  --header-bg-color:rgb(25, 28, 26);
-  --logo-color:rgb(26, 255, 0);
-  --header-component-color:var(--logo-color);
-  --header-height:80px;
-  --logo-basis:25%;
-  --search-box-basis:40%;
-  --header-links-basis:30%;
-  --header-each-link-basis:20%;
-  --body-component-color:var(--logo-color);
-  --main-bg-color:black;
-  --input-bg-color:#ffffff;
-  --input-text-color:rgb(0, 255, 42);
-  --popup-bg-color:rgb(255, 0, 0);
-  --popup-text-color:rgb(255, 208, 0);
-  --post-left-basis:25%;
-  --post-right-basis:75%;
+:root {
+  --header-bg-color: rgb(9, 7, 7);
+  --logo-color: rgb(252, 77, 58);
+  --header-component-color: var(--logo-color);
+  --header-hover-component-color: rgb(248, 5, 5);
+  --header-height: 80px;
+  --logo-basis: 25%;
+  --search-box-basis: 40%;
+  --header-links-basis: 30%;
+  --header-each-link-basis: 20%;
+  --body-component-color: var(--logo-color);
+  --main-bg-color: rgb(3, 3, 3);
+  --input-bg-color: rgb(237, 245, 236);
+  --input-hover-color: rgb(248, 5, 5);
+  --input-text-color: rgb(255, 0, 0);
+  --popup-bg-color: rgb(255, 0, 0);
+  --popup-text-color: rgb(255, 208, 0);
+  --post-left-basis: 20%;
+  --post-right-basis: 70%;
+  --transition-time-low: 0.5s;
 }
 
 
-body{
+body {
   background: var(--main-bg-color);
   min-height: 100vh;
 }
 
-.logo{
+.logo {
   flex-basis: var(--logo-basis);
 }
 
-.search-box{
+.search-box {
   flex-basis: var(--search-box-basis);
   height: var(--header-height);
   position: relative;
 }
 
-.search-box input{
+.search-box input {
   border: 2px solid var(--header-component-color);
   padding: 10px 50px;
   outline: none;
   border-radius: 30px;
   color: var(--header-component-color);
   width: 100%;
+  transition: border var(--transition-time-low) ease;
 }
 
-.search-box i{
+.search-box i {
   position: absolute;
   left: 20px;
   font-size: 1.5rem;
   color: var(--header-component-color);
 }
 
-.search-box input::placeholder{
+.search-box input::placeholder {
   color: var(--header-component-color);
 }
 
-.links{
+.search-box input:focus {
+  border: 2px solid var(--input-hover-color);
+}
+
+
+.links {
   flex-basis: var(--header-links-basis);
 }
 
-.link-container{
+
+.link-container {
   flex-basis: var(--header-each-link-basis);
 }
 
-.link-container a{
+.link-container a {
   color: var(--header-component-color);
   text-decoration: none;
 }
 
-.link-container a i{
+
+.link-container a i {
   font-size: 2.5rem;
+  transition: color var(--transition-time-low) ease;
 }
 
-.authorize-icon{
+.link-container a i:hover {
+  color: var(--header-hover-component-color);
+  cursor: pointer;
+}
+
+.authorize-icon {
   font-size: 30rem;
   color: var(--body-component-color);
 }
 
-.authorize-basis{
+.authorize-basis {
   flex-basis: 40%;
 }
 
-.post{
+.post-container {
   height: 50vh;
 }
 
-.post .left{
+.post-container .left {
   flex-basis: var(--post-left-basis);
 }
 
-.post .right{
+.post-container .right {
+  transition: transform var(--transition-time-low) ease;
   flex-basis: var(--post-right-basis);
+}
+
+.post-container .right:hover {
+  transform: scale(1.05);
 }
 
 .image-container {
@@ -96,30 +118,45 @@ body{
   height: 100%;
   position: relative;
 }
+
 .image-container .image {
   width: 100%;
-  height: 100%;
   position: relative !important;
   object-fit: cover;
 }
 
-.friends-avatar{
+.friend-list-item {
+  transition: transform var(--transition-time-low) ease;
+}
+
+.friend-list-item:hover {
+  transform: scale(1.05);
+}
+
+.friends-avatar {
   width: 50px;
   height: 50px;
   position: relative;
 }
-.friends-avatar img{
+
+.friends-avatar img {
   border-radius: 50%;
   width: 100%;
   position: relative;
   height: 100%;
+  transition: transform var(--transition-time-low) ease;
 }
 
-input[type="file"]{
+.friends-avatar img:hover {
+  transform: scale(1.25);
+}
+
+input[type="file"] {
   display: none;
 }
 
-label[for="post-file"]{
+label[for="post-file"],
+label[for="userimage"] {
   background: var(--body-component-color);
   padding: 10px 20px;
   font-size: 1.5rem;
@@ -127,7 +164,11 @@ label[for="post-file"]{
   margin: 2rem 1.5rem;
   color: var(--input-bg-color);
   width: 100%;
+  transition: background var(--transition-time-low) ease,
+    color var(--transition-time-low) ease;
 }
 
-@media screen and (max-width:800px) {
+label[for="post-file"]:hover,
+label[for="userimage"]:hover {
+  background: var(--header-hover-component-color);
 }

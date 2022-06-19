@@ -1,6 +1,8 @@
 import React from 'react'
 import Router from "next/router"
 import { useState,useEffect } from 'react';
+import { FaUser } from "react-icons/fa"
+
 
 export default function AboutUser() {
     const [username,setUserName] = useState("");
@@ -18,14 +20,14 @@ export default function AboutUser() {
       }, []);
 
     return (
-        <section className='flex'>
+        <main className='flex'>
             <section className="flex center flex-column py-5 authorize-basis">
-                <i className="fa fa-user my-2 authorize-icon" aria-hidden="true"></i>
+                <i className="authorize-icon" aria-hidden="true"><FaUser /></i>
                 <h2 className="heading-2 body-color">{username}</h2>
             </section>
             <div className='flex center flex-column py-1'>
                 <h5 className='heading-5 body-color'>{email}</h5>
             </div>
-        </section>
+        </main>
     )
 }

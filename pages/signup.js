@@ -1,6 +1,8 @@
 import Router from "next/router";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import PopUp from "../components/PopUp";
+import { FaUser } from "react-icons/fa";
+
 export default function SignUp() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -8,17 +10,17 @@ export default function SignUp() {
   const [isLogin, setLogin] = useState(false);
   useEffect(() => {
     const Api_Key = localStorage.getItem("Api_Key");
-    if(Api_Key == undefined || Api_Key == "undefined" || Api_Key == null){
+    if (Api_Key == undefined || Api_Key == "undefined" || Api_Key == null) {
       setLogin(false);
-    }else{
+    } else {
       setLogin(true);
     }
-    if(isLogin){
+    if (isLogin) {
       Router.push("/");
     }
   }, []);
 
-  const CreateAccount = async (event)=>{
+  const CreateAccount = async (event) => {
     event.preventDefault();
     const username = document.getElementById("username").value;
     const email = document.getElementById("email").value;
@@ -26,57 +28,48 @@ export default function SignUp() {
     const password = document.getElementById("password").value;
     const userimage = document.getElementById("userimage").files;
     console.log(userimage);
-    const image_data = new FormData()
-    image_data.append('userimage', userimage[0])
-    image_data.append('name', userimage[0].name)
-    image_data.append('email', email)
-    console.log(image_data.get('userimage'))
-    console.log(image_data.get('name'))
-    console.log(image_data);
-    await fetch(process.env.server_address+ "/upload-avatar",{
-        method:"POST",
-        mode:"cors",
-        body: image_data
-      });
-    if(password.length >= 8 && mobile_number.length == 10){
-      const info = {username,email,mobile_number,password,userimage};
-      const response = await fetch(process.env.server_address+"/signup",{
-        method:"POST",
-        mode:"cors",
-        headers:{
-          "Content-Type" : "application/json"
-        },
-        body: JSON.stringify(info)
-      });
-      const data = await response.json();
-      if (data.sucess) {
-        localStorage.setItem("Api_Key",data.Api_Key)
-        localStorage.setItem("Name",data.User_Name)
-        localStorage.setItem("Email",data.email)
-        // Router.push("/");
-        
-      } else {
-        setTitle("Fill the form correctly");
-        setDesc("Please fill all the required fields correctly.");
-        setHidden(false);
-        setTimeout(()=>{
-          setHidden(true);
-        },2000);
-      }
-    }else{
+    const data = new FormData()
+    data.append('userimage', userimage[0])
+    data.append('name', userimage[0].name)
+    data.append('email', email)
+    data.append('mobile_number', mobile_number)
+    data.append('password', password)
+    data.append('username', username)
+    console.log(data.get('userimage'))
+    console.log(data.get('name'))
+    console.log(data);
+    const response = await fetch("http://localhost:2500/signup", {
+      method: "POST",
+      mode: "cors",
+      body: data
+    });
+    const info = await response.json();
+    if (data.sucess) {
+      localStorage.setItem("Api_Key", info.Api_Key)
+      localStorage.setItem("Name", info.User_Name)
+      localStorage.setItem("Email", info.email)
+      // Router.push("/");
+
+    } else {
       setTitle("Fill the form correctly");
       setDesc("Please fill all the required fields correctly.");
       setHidden(false);
-      setTimeout(()=>{
+      setTimeout(() => {
         setHidden(true);
-      },2000);
+      }, 2000);
     }
+    setTitle("Fill the form correctly");
+    setDesc("Please fill all the required fields correctly.");
+    setHidden(false);
+    setTimeout(() => {
+      setHidden(true);
+    }, 2000);
   }
   return (
     <main className="flex">
-      <PopUp title={title} desc={desc} hidden={hidden}/>
+      <PopUp title={title} desc={desc} hidden={hidden} />
       <section className="flex center flex-column py-5 authorize-basis">
-        <i className="fa fa-user my-2 authorize-icon" aria-hidden="true"></i>
+        <i className="authorize-icon" aria-hidden="true"><FaUser /></i>
         <h3 className="heading-2 body-color">Sign Up to continue</h3>
       </section>
       <form method="post" className="container m-auto px-3 py-3 col-equal-2 mx-2" onSubmit={CreateAccount}>
@@ -84,7 +77,7 @@ export default function SignUp() {
         <input type="email" className="input-field" name="email" id="email" placeholder="Enter your email here" required />
         <input type="tel" className="input-field" name="mobile_number" id="mobile_number" placeholder="Enter your mobile number here" required />
         <input type="password" className="input-field" name="password" id="password" placeholder="Enter your password here" required />
-        <label htmlFor="user-image">Choose a image</label>
+        <label htmlFor="userimage">Choose a image</label>
         <input type="file" className="input-field" accept="image/*" name="userimage" id="userimage" placeholder="Choose a Image" />
         <input type="submit" value="Sign Up" className="btn m-auto d-block" />
       </form>

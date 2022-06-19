@@ -13,7 +13,7 @@ export default function Friends() {
   }, []);
 
     return (
-      <main className="my-5">
+      <main>
         {isLogin ? <FriendsContainer /> : <AuthorizeLogo />}
       </main>
     )

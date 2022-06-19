@@ -1,6 +1,7 @@
 import Router from "next/router";
 import { useState,useEffect } from "react";
 import PopUp from "../components/PopUp";
+import { FaUser } from "react-icons/fa"
 
 export default function Login() {
   const [title, setTitle] = useState("");
@@ -24,7 +25,7 @@ export default function Login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const info = {email,password};
-      const response = await fetch(process.env.server_address+"/login",{
+      const response = await fetch("http://localhost:2500/login",{
         method:"POST",
         mode:"cors",
         headers:{
@@ -51,7 +52,7 @@ export default function Login() {
     <main className="flex">
       <PopUp title={title} desc={desc} hidden={hidden}/>
       <section className="flex center flex-column py-5 authorize-basis">
-        <i className="fa fa-user my-2 authorize-icon" aria-hidden="true"></i>
+      <i className="authorize-icon"><FaUser /></i>
         <h3 className="heading-2 body-color">Sign Up to continue</h3>
       </section>
       <form method="post" className="container m-auto px-3 py-3 col-equal-2 mx-2" onSubmit={Login}>

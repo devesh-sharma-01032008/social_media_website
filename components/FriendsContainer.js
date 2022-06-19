@@ -1,6 +1,8 @@
 import React from 'react'
 import { useEffect ,useState} from "react";
 import Friend from './Friend'
+
+
 export default function FriendsContainer() {
   const [friends,setFriends] = useState([])
   const LoadFriends = async ()=>{
@@ -11,7 +13,7 @@ export default function FriendsContainer() {
         const count = 150;
         const info = {name,api_key,count,email};
         console.log(process.env);
-          const response = await fetch(process.env.SERVER_ADDRESS+"/getfriends",{
+          const response = await fetch("http://localhost:2500/getfriends",{
             method:"POST",
             mode:"cors",
             headers:{
@@ -30,7 +32,7 @@ export default function FriendsContainer() {
         <section className='container m-auto text-white'>
             {
               friends.map((friend)=>{
-                return <Friend friendName={friend.username} friendEmail={friend.email} imageName={"post-1.png"} />
+                return <Friend key={friend.email} friendName={friend.username} friendEmail={friend.email} imageName={"post-1.png"} />
               })
             }
         </section>

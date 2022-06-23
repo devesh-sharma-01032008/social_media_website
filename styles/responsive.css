@@ -11,6 +11,11 @@
         height: 60px;
     }
 
+    .logo {
+        position: fixed;
+        top: 8px;
+    }
+
     nav {
         position: fixed;
         width: 100%;
@@ -21,15 +26,11 @@
     }
 
     main {
-        padding: 5rem 0rem;
+        padding: 5rem 2rem;
     }
 
     .container {
         width: 100%;
-    }
-
-    .logo {
-        display: none;
     }
 
     .search-box {
@@ -58,7 +59,7 @@
         width: 85vw;
     }
 
-    input[type="submit"]{
+    input[type="submit"] {
         width: 85vw;
     }
 
@@ -75,10 +76,10 @@
 
     .authorize-basis {
         flex-basis: 100%;
-      }
+    }
 
-      .authorize-icon {
-        display: none;
-      }
+    .authorize-icon {
+        font-size: 15rem;
+    }
 
 }

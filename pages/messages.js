@@ -1,5 +1,6 @@
 import AuthorizeLogo from "../components/AuthorizeLogo";
 import { useState, useEffect } from "react";
+import MessageContainer from "../components/MessageContainer";
 
 export default function Messages() {
   const [isLogin, setLogin] = useState(false);
@@ -14,7 +15,7 @@ export default function Messages() {
 
     return (
       <main>
-        {isLogin ? "" : <AuthorizeLogo />}
+        {isLogin ? <MessageContainer /> : <AuthorizeLogo />}
       </main>
     )
   }

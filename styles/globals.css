@@ -29,6 +29,10 @@ body {
 .logo {
   flex-basis: var(--logo-basis);
 }
+.logo-icon{
+  position: relative;
+  top: 5px;
+}
 
 .search-box {
   flex-basis: var(--search-box-basis);
@@ -170,5 +174,12 @@ label[for="userimage"] {
 
 label[for="post-file"]:hover,
 label[for="userimage"]:hover {
+  background: var(--header-hover-component-color);
+}
+
+.message-count{
+  padding: 5px;
+  right: 10px;
+  border-radius: 50%;
   background: var(--header-hover-component-color);
 }

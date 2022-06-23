@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { AiFillHome,AiFillMessage,AiOutlineUser,AiOutlineUserAdd,AiFillFileAdd,AiOutlineSearch } from "react-icons/ai";
+import { AiFillHome, AiFillMessage, AiOutlineUser, AiOutlineUserAdd, AiFillFileAdd, AiOutlineSearch,AiOutlineLogin } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
-import { GrLogin } from "react-icons/gr";
+import { BsInstagram } from "react-icons/bs"
 
 export default function Header(props) {
     const [isLogin, setLogin] = useState(false);
@@ -19,7 +19,12 @@ export default function Header(props) {
         <header>
             <nav className='flex center'>
                 <div className="logo center">
-                    <h1 className="heading-3 logo-font">{props.website_name}</h1>
+                    <h1 className="heading-3 logo-font">
+                    <i className='px-1 logo-icon'>
+                        <BsInstagram />
+                    </i>
+                    Instagram
+                    </h1>
                 </div>
                 <div className="search-box center">
                     <i><AiOutlineSearch /></i>
@@ -28,7 +33,7 @@ export default function Header(props) {
                 <div className="links flex">
                     <div className="link-container center">
                         <Link href={"/"}>
-                            <a> 
+                            <a>
                                 <i> <AiFillHome /></i>
                             </a>
                         </Link>
@@ -49,14 +54,14 @@ export default function Header(props) {
                     </div>
                     <div className="link-container center">
                         <Link href={isLogin ? "/add-post" : "/signup"}>
-                        <a>
-                                <i>{isLogin ?<AiFillFileAdd /> : <AiOutlineUserAdd />}</i>
+                            <a>
+                                <i>{isLogin ? <AiFillFileAdd /> : <AiOutlineUserAdd />}</i>
                             </a>
                         </Link>
                     </div>
                     <div className="link-container center">
                         <Link href={isLogin ? "/about-user" : "/login"}>
-                            <a><i>{isLogin ?<AiOutlineUser /> : <GrLogin />}</i></a>
+                            <a><i>{isLogin ? <AiOutlineUser /> : <AiOutlineLogin />}</i></a>
                         </Link>
                     </div>
                 </div>

@@ -15,8 +15,8 @@
   --input-text-color: rgb(255, 0, 0);
   --popup-bg-color: rgb(255, 0, 0);
   --popup-text-color: rgb(255, 208, 0);
-  --post-left-basis: 20%;
-  --post-right-basis: 70%;
+  --post-left-basis: 40%;
+  --post-right-basis: 50%;
   --transition-time-low: 0.5s;
 }
 
@@ -129,13 +129,6 @@ body {
   object-fit: cover;
 }
 
-.friend-list-item {
-  transition: transform var(--transition-time-low) ease;
-}
-
-.friend-list-item:hover {
-  transform: scale(1.05);
-}
 
 .friends-avatar {
   width: 50px;

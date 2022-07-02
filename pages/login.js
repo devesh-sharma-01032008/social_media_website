@@ -1,5 +1,5 @@
 import Router from "next/router";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import PopUp from "../components/PopUp";
 import { FaUser } from "react-icons/fa"
 
@@ -10,49 +10,53 @@ export default function Login() {
   const [isLogin, setLogin] = useState(false);
   useEffect(() => {
     const Api_Key = localStorage.getItem("Api_Key");
-    if(Api_Key == undefined || Api_Key == "undefined" || Api_Key == null){
+    if (Api_Key == undefined || Api_Key == "undefined" || Api_Key == null) {
       setLogin(false);
-    }else{
+    } else {
       setLogin(true);
     }
-    if(isLogin){
+    if (isLogin) {
       Router.push("/");
     }
   }, []);
 
-  const Login = async (event)=>{
+  const Login = async (event) => {
     event.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    const info = {email,password};
-      const response = await fetch("http://localhost:2500/login",{
-        method:"POST",
-        mode:"cors",
-        headers:{
-          "Content-Type" : "application/json"
+    const info = { email, password };
+    try {
+      const response = await fetch("http://localhost:2500/login", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(info)
       });
       const data = await response.json();
-      if(data.sucess){
-        localStorage.setItem("Api_Key",data.Api_Key)
-        localStorage.setItem("Name",data.User_Name)
-        localStorage.setItem("Email",data.email)
+      if (data.sucess) {
+        localStorage.setItem("Api_Key", data.Api_Key)
+        localStorage.setItem("Name", data.User_Name)
+        localStorage.setItem("Email", data.email)
         Router.push("/")
-      }else{
+      } else {
         setTitle("Invalid Creditionals");
         setDesc("Please Enter Creditionals correctly");
         setHidden(false);
-        setTimeout(()=>{
+        setTimeout(() => {
           setHidden(true)
-        },2000);
+        }, 2000);
       }
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <main className="flex">
-      <PopUp title={title} desc={desc} hidden={hidden}/>
+      <PopUp title={title} desc={desc} hidden={hidden} />
       <section className="flex center flex-column py-5 authorize-basis">
-      <i className="authorize-icon"><FaUser /></i>
+        <i className="authorize-icon"><FaUser /></i>
         <h3 className="heading-2 body-color">Sign Up to continue</h3>
       </section>
       <form method="post" className="container m-auto px-3 py-3 col-equal-2 mx-2" onSubmit={Login}>

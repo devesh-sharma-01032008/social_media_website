@@ -4,11 +4,11 @@ import PostsContainer from "../components/PostsContainer";
 
 export default function Home() {
   const [isLogin, setLogin] = useState(false);
-  useEffect(() => {
+  useEffect(async () => {
     const Api_Key = localStorage.getItem("Api_Key");
-    if(Api_Key == undefined || Api_Key == "undefined" || Api_Key == null){
+    if (Api_Key == undefined || Api_Key == "undefined" || Api_Key == null) {
       setLogin(false);
-    }else{
+    } else {
       setLogin(true);
     }
   }, []);

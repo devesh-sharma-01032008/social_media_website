@@ -22,8 +22,8 @@ export default function FriendsContainer() {
             body: JSON.stringify(info)
           });
           const data = await response.json();
-          console.log(data.friends);
           setFriends(data.friends);
+          console.log(data.friends);
     }
     useEffect(() => {
         LoadFriends();
@@ -32,7 +32,8 @@ export default function FriendsContainer() {
         <section className='container m-auto text-white'>
             {
               friends.map((friend)=>{
-                return <Friend key={friend.email} friendName={friend.username} friendEmail={friend.email} imageName={"post-1.png"} />
+                console.log(friend.avatar);
+                return <Friend friendName={friend.username} friendEmail={friend.email} avatar={friend.avatar} key={friend.email} />
               })
             }
         </section>

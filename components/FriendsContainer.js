@@ -13,6 +13,7 @@ export default function FriendsContainer() {
         const count = 150;
         const info = {name,api_key,count,email};
         console.log(process.env);
+        try { 
           const response = await fetch("http://localhost:2500/getfriends",{
             method:"POST",
             mode:"cors",
@@ -24,6 +25,10 @@ export default function FriendsContainer() {
           const data = await response.json();
           setFriends(data.friends);
           console.log(data.friends);
+        } catch (error) {
+          console.log(error);
+          
+        }
     }
     useEffect(() => {
         LoadFriends();

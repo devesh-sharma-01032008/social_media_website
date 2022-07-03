@@ -8,13 +8,24 @@ export default function SignUp() {
   const [desc, setDesc] = useState("");
   const [hidden, setHidden] = useState(true);
   const [isLogin, setLogin] = useState(false);
+  const [filename, setFileName] = useState("Choose a file");
+  const SetFileName = (event) => {
+    const files = event.target.files;
+    console.log(files);
+    const filename = files[0].name;
+    console.log(filename);
+    setFileName(filename);
+  }
+
   useEffect(() => {
     const Api_Key = localStorage.getItem("Api_Key");
-    if (Api_Key == undefined || Api_Key == "undefined" || Api_Key == null) {
-      setLogin(false);
-    } else {
+    console.log(Api_Key);
+    if (Api_Key) {
       setLogin(true);
+    } else {
+      setLogin(false);
     }
+    console.log(isLogin);
     if (isLogin) {
       Router.push("/");
     }
@@ -38,32 +49,42 @@ export default function SignUp() {
     console.log(data.get('userimage'))
     console.log(data.get('name'))
     console.log(data);
-    const response = await fetch("http://localhost:2500/signup", {
-      method: "POST",
-      mode: "cors",
-      body: data
-    });
-    const info = await response.json();
-    if (data.sucess) {
-      localStorage.setItem("Api_Key", info.Api_Key)
-      localStorage.setItem("Name", info.User_Name)
-      localStorage.setItem("Email", info.email)
-      // Router.push("/");
-
-    } else {
+    try{
+      const response = await fetch("http://localhost:2500/signup", {
+        method: "POST",
+        mode: "cors",
+        body: data
+      });
+      const info = await response.json();
+      if (data.sucess) {
+        localStorage.setItem("Api_Key", info.Api_Key)
+        localStorage.setItem("Name", info.User_Name)
+        localStorage.setItem("Email", info.email)
+        localStorage.setItem("Avatar", data.avatar)
+        Router.push("/");
+  
+      } else {
+        setTitle("Fill the form correctly");
+        setDesc("Please fill all the required fields correctly.");
+        setHidden(false);
+        setTimeout(() => {
+          setHidden(true);
+        }, 2000);
+      }
       setTitle("Fill the form correctly");
       setDesc("Please fill all the required fields correctly.");
       setHidden(false);
       setTimeout(() => {
         setHidden(true);
       }, 2000);
+    }catch(e){
+      setTitle("Something went wrong");
+      setDesc(e.body);
+      setHidden(false);
+      setTimeout(() => {
+        setHidden(true);
+      }, 2000);
     }
-    setTitle("Fill the form correctly");
-    setDesc("Please fill all the required fields correctly.");
-    setHidden(false);
-    setTimeout(() => {
-      setHidden(true);
-    }, 2000);
   }
   return (
     <main className="flex">
@@ -77,8 +98,8 @@ export default function SignUp() {
         <input type="email" className="input-field" name="email" id="email" placeholder="Enter your email here" required />
         <input type="tel" className="input-field" name="mobile_number" id="mobile_number" placeholder="Enter your mobile number here" required />
         <input type="password" className="input-field" name="password" id="password" placeholder="Enter your password here" required />
-        <label htmlFor="userimage">Choose a image</label>
-        <input type="file" className="input-field" accept="image/*" name="userimage" id="userimage" placeholder="Choose a Image" />
+        <label htmlFor="userimage">{filename}</label>
+        <input type="file" className="input-field" accept="image/*" name="userimage" id="userimage" placeholder="Choose a Image" onChange={SetFileName} />
         <input type="submit" value="Sign Up" className="btn m-auto d-block" />
       </form>
     </main>

@@ -39,6 +39,7 @@ export default function Login() {
         localStorage.setItem("Api_Key", data.Api_Key)
         localStorage.setItem("Name", data.User_Name)
         localStorage.setItem("Email", data.email)
+        localStorage.setItem("Avatar", data.avatar)
         Router.push("/")
       } else {
         setTitle("Invalid Creditionals");
@@ -57,7 +58,7 @@ export default function Login() {
       <PopUp title={title} desc={desc} hidden={hidden} />
       <section className="flex center flex-column py-5 authorize-basis">
         <i className="authorize-icon"><FaUser /></i>
-        <h3 className="heading-2 body-color">Sign Up to continue</h3>
+        <h3 className="heading-2 body-color">Sign In to continue</h3>
       </section>
       <form method="post" className="container m-auto px-3 py-3 col-equal-2 mx-2" onSubmit={Login}>
         <input type="email" className="input-field" name="email" id="email" placeholder="Enter your email here" required />

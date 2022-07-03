@@ -6,7 +6,7 @@ import '../styles/responsive.css'
 
 function MyApp({ Component, pageProps }) {
   return (<>
-      <Header website_name={"Instagram"} />
+      <Header website_name={"JNV Media"} />
       <Component {...pageProps} />
   </>);
 }

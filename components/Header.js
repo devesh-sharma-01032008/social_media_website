@@ -23,7 +23,7 @@ export default function Header(props) {
                     <i className='px-1 logo-icon'>
                         <BsInstagram />
                     </i>
-                    Instagram
+                    {props.website_name}
                     </h1>
                 </div>
                 <div className="search-box center">

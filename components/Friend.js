@@ -2,9 +2,8 @@ import Image from "next/image";
 import { GrAdd } from "react-icons/gr"
 
 export default function Friend(props) {
-    const AddFriend = async (event) => {
-        console.log(email);
-        const friend_email = await event.target.parentNode.parentNode.childNodes[1].childNodes[1].innerText;
+    const AddFriend = async () => {
+        const friend_email = document.getElementById("friend-email").innerText;
         console.log(friend_email);
         const email = localStorage.getItem("Email");
         const Api_Key = localStorage.getItem("Api_Key");
@@ -30,14 +29,14 @@ export default function Friend(props) {
     return (
         <div className='flex my-5 p-relative friend-list-item'>
             <div className='mx-2 friends-avatar'>
-                <img src={props.avatar != undefined ?  `http://localhost:2500/get_image_file?email=${props.friendEmail}&file_name=${props.avatar}&image_category=avatar` : "/images/post-1.png"} alt={props.avatar != undefined ?  `http://localhost:2500/get_image_file?email=${props.friendEmail}&file_name=${props.avatar}&image_category=avatar` : "/images/post-1.png"} layout='fill' />
+                <Image src={props.avatar != undefined ?  `http://localhost:2500/get_image_file?email=${props.friendEmail}&file_name=${props.avatar}&image_category=avatar` : "/images/post-1.png"} alt={props.avatar != undefined ?  `http://localhost:2500/get_image_file?email=${props.friendEmail}&file_name=${props.avatar}&image_category=avatar` : "/images/post-1.png"} layout='fill' />
             </div>
             <div>
                 <h5 className='heading-5 body-color'>{props.friendName}</h5>
-                <p className="body-color">{props.friendEmail}</p>
+                <p className="body-color" id="friend-email">{props.friendEmail}</p>
             </div>
             <div className="p-absolute p-justify-center" style={{ top: "50%", right: "10px" }}>
-                <button className="btn" onClick={AddFriend}><i></i><GrAdd /></button>
+                <button className="btn" onClick={AddFriend}><i><GrAdd /></i></button>
             </div>
         </div>
     )
